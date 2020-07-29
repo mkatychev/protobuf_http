@@ -4,19 +4,11 @@ package main;
 
 import "google/protobuf/timestamp.proto";
 
-option go_package = ".;notebook";
+option go_package = ".;main";
 
-// Note
-message Note {
-  string                    id            = 1;
-  string                    title         = 2;
-  string                    body          = 3;
-  repeated string           tags          = 4;
-  google.protobuf.Timestamp created       = 5;
-  google.protobuf.Timestamp last_modified = 6;
-}
-
-// NotebookRequest Request/Response objects
+// ---------------------------------
+// Notebook Request/Response objects
+// ---------------------------------
 
 // CreateNotebookRequest creates a notebook object internally
 message CreateNotebookRequest {
@@ -32,14 +24,42 @@ message GetNotebookRequest {
   string name = 1;
 }
 
-// GetNotebookResponse returns the notebook title was well as repteated Note objects
+// GetNotebookResponse returns the notebook title was well as repeated Note objects
 // with an empty body key
 message GetNotebookResponse {
-  string                message = 1;
+  string        message = 1;
   repeated Note notes   = 2;
 }
 
+// -----------------------------
 // Note Request/Response objects
+// -----------------------------
+
+// Note is the object that stores data in notebooks
+message Note {
+  string                    id            = 1;
+  string                    title         = 2;
+  string                    body          = 3;
+  repeated string           tags          = 4;
+  google.protobuf.Timestamp created       = 5;
+  google.protobuf.Timestamp last_modified = 6;
+}
+
+// CreateNoteRequest stores a note returning an id of said note
+message CreateNoteRequest {
+  string          notebook_name = 1;
+  string          title         = 2;
+  string          body          = 3;
+  repeated string tags          = 4;
+}
+
+// CreateNoteResponse returns the note id and creation timestamp upon successful insertion
+// into the DB
+message CreateNoteResponse {
+  string                    id      = 1;
+  google.protobuf.Timestamp created = 2;
+}
+
 // GetNoteRequest retuns the Note object
 message GetNoteRequest {
   string notebook_name = 1;
@@ -47,6 +67,21 @@ message GetNoteRequest {
 }
 
 message GetNoteResponse {
+  Note note = 1;
+}
+
+// UpateNoteRequest attempts to update a note object
+message UpdateNoteRequest {
+  string          notebook_name = 1;
+  string          id            = 2;
+  string          title         = 3;
+  string          body          = 4;
+  repeated string tags          = 5;
+}
+
+// UpateNoteResponse returns a full note object upon a successful
+// update
+message UpdateNoteResponse {
   Note note = 1;
 }
 

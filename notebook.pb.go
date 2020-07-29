@@ -4,7 +4,7 @@
 // 	protoc        v3.12.3
 // source: notebook.proto
 
-package notebook
+package main
 
 import (
 	proto "github.com/golang/protobuf/proto"
@@ -26,7 +26,208 @@ const (
 // of the legacy proto package is being used.
 const _ = proto.ProtoPackageIsVersion4
 
-// Note
+// CreateNotebookRequest creates a notebook object internally
+type CreateNotebookRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+}
+
+func (x *CreateNotebookRequest) Reset() {
+	*x = CreateNotebookRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_notebook_proto_msgTypes[0]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *CreateNotebookRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CreateNotebookRequest) ProtoMessage() {}
+
+func (x *CreateNotebookRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_notebook_proto_msgTypes[0]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CreateNotebookRequest.ProtoReflect.Descriptor instead.
+func (*CreateNotebookRequest) Descriptor() ([]byte, []int) {
+	return file_notebook_proto_rawDescGZIP(), []int{0}
+}
+
+func (x *CreateNotebookRequest) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+// CreateNotebookResponse creates a notebook object internally
+type CreateNotebookResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+}
+
+func (x *CreateNotebookResponse) Reset() {
+	*x = CreateNotebookResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_notebook_proto_msgTypes[1]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *CreateNotebookResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CreateNotebookResponse) ProtoMessage() {}
+
+func (x *CreateNotebookResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_notebook_proto_msgTypes[1]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CreateNotebookResponse.ProtoReflect.Descriptor instead.
+func (*CreateNotebookResponse) Descriptor() ([]byte, []int) {
+	return file_notebook_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *CreateNotebookResponse) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+// GetNotebookRequest takes a notebook name as a parameter
+type GetNotebookRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+}
+
+func (x *GetNotebookRequest) Reset() {
+	*x = GetNotebookRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_notebook_proto_msgTypes[2]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetNotebookRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetNotebookRequest) ProtoMessage() {}
+
+func (x *GetNotebookRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_notebook_proto_msgTypes[2]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetNotebookRequest.ProtoReflect.Descriptor instead.
+func (*GetNotebookRequest) Descriptor() ([]byte, []int) {
+	return file_notebook_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *GetNotebookRequest) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+// GetNotebookResponse returns the notebook title was well as repeated Note objects
+// with an empty body key
+type GetNotebookResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Message string  `protobuf:"bytes,1,opt,name=message,proto3" json:"message,omitempty"`
+	Notes   []*Note `protobuf:"bytes,2,rep,name=notes,proto3" json:"notes,omitempty"`
+}
+
+func (x *GetNotebookResponse) Reset() {
+	*x = GetNotebookResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_notebook_proto_msgTypes[3]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetNotebookResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetNotebookResponse) ProtoMessage() {}
+
+func (x *GetNotebookResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_notebook_proto_msgTypes[3]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetNotebookResponse.ProtoReflect.Descriptor instead.
+func (*GetNotebookResponse) Descriptor() ([]byte, []int) {
+	return file_notebook_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *GetNotebookResponse) GetMessage() string {
+	if x != nil {
+		return x.Message
+	}
+	return ""
+}
+
+func (x *GetNotebookResponse) GetNotes() []*Note {
+	if x != nil {
+		return x.Notes
+	}
+	return nil
+}
+
+// Note is the object that stores data in notebooks
 type Note struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -43,7 +244,7 @@ type Note struct {
 func (x *Note) Reset() {
 	*x = Note{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_notebook_proto_msgTypes[0]
+		mi := &file_notebook_proto_msgTypes[4]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -56,7 +257,7 @@ func (x *Note) String() string {
 func (*Note) ProtoMessage() {}
 
 func (x *Note) ProtoReflect() protoreflect.Message {
-	mi := &file_notebook_proto_msgTypes[0]
+	mi := &file_notebook_proto_msgTypes[4]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -69,7 +270,7 @@ func (x *Note) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Note.ProtoReflect.Descriptor instead.
 func (*Note) Descriptor() ([]byte, []int) {
-	return file_notebook_proto_rawDescGZIP(), []int{0}
+	return file_notebook_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *Note) GetId() string {
@@ -114,32 +315,35 @@ func (x *Note) GetLastModified() *timestamp.Timestamp {
 	return nil
 }
 
-// CreateNotebookRequest creates a notebook object internally
-type CreateNotebookRequest struct {
+// CreateNoteRequest stores a note returning an id of said note
+type CreateNoteRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	NotebookName string   `protobuf:"bytes,1,opt,name=notebook_name,json=notebookName,proto3" json:"notebook_name,omitempty"`
+	Title        string   `protobuf:"bytes,2,opt,name=title,proto3" json:"title,omitempty"`
+	Body         string   `protobuf:"bytes,3,opt,name=body,proto3" json:"body,omitempty"`
+	Tags         []string `protobuf:"bytes,4,rep,name=tags,proto3" json:"tags,omitempty"`
 }
 
-func (x *CreateNotebookRequest) Reset() {
-	*x = CreateNotebookRequest{}
+func (x *CreateNoteRequest) Reset() {
+	*x = CreateNoteRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_notebook_proto_msgTypes[1]
+		mi := &file_notebook_proto_msgTypes[5]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
 }
 
-func (x *CreateNotebookRequest) String() string {
+func (x *CreateNoteRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*CreateNotebookRequest) ProtoMessage() {}
+func (*CreateNoteRequest) ProtoMessage() {}
 
-func (x *CreateNotebookRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_notebook_proto_msgTypes[1]
+func (x *CreateNoteRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_notebook_proto_msgTypes[5]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -150,172 +354,96 @@ func (x *CreateNotebookRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use CreateNotebookRequest.ProtoReflect.Descriptor instead.
-func (*CreateNotebookRequest) Descriptor() ([]byte, []int) {
-	return file_notebook_proto_rawDescGZIP(), []int{1}
+// Deprecated: Use CreateNoteRequest.ProtoReflect.Descriptor instead.
+func (*CreateNoteRequest) Descriptor() ([]byte, []int) {
+	return file_notebook_proto_rawDescGZIP(), []int{5}
 }
 
-func (x *CreateNotebookRequest) GetName() string {
+func (x *CreateNoteRequest) GetNotebookName() string {
 	if x != nil {
-		return x.Name
+		return x.NotebookName
 	}
 	return ""
 }
 
-// CreateNotebookResponse creates a notebook object internally
-type CreateNotebookResponse struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-}
-
-func (x *CreateNotebookResponse) Reset() {
-	*x = CreateNotebookResponse{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_notebook_proto_msgTypes[2]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *CreateNotebookResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*CreateNotebookResponse) ProtoMessage() {}
-
-func (x *CreateNotebookResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_notebook_proto_msgTypes[2]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use CreateNotebookResponse.ProtoReflect.Descriptor instead.
-func (*CreateNotebookResponse) Descriptor() ([]byte, []int) {
-	return file_notebook_proto_rawDescGZIP(), []int{2}
-}
-
-func (x *CreateNotebookResponse) GetName() string {
+func (x *CreateNoteRequest) GetTitle() string {
 	if x != nil {
-		return x.Name
+		return x.Title
 	}
 	return ""
 }
 
-// GetNotebookRequest takes a notebook name as a parameter
-type GetNotebookRequest struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-}
-
-func (x *GetNotebookRequest) Reset() {
-	*x = GetNotebookRequest{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_notebook_proto_msgTypes[3]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *GetNotebookRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetNotebookRequest) ProtoMessage() {}
-
-func (x *GetNotebookRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_notebook_proto_msgTypes[3]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetNotebookRequest.ProtoReflect.Descriptor instead.
-func (*GetNotebookRequest) Descriptor() ([]byte, []int) {
-	return file_notebook_proto_rawDescGZIP(), []int{3}
-}
-
-func (x *GetNotebookRequest) GetName() string {
+func (x *CreateNoteRequest) GetBody() string {
 	if x != nil {
-		return x.Name
+		return x.Body
 	}
 	return ""
 }
 
-// GetNotebookResponse returns the notebook title was well as repteated Note objects
-// with an empty body key
-type GetNotebookResponse struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	Message string  `protobuf:"bytes,1,opt,name=message,proto3" json:"message,omitempty"`
-	Notes   []*Note `protobuf:"bytes,2,rep,name=notes,proto3" json:"notes,omitempty"`
-}
-
-func (x *GetNotebookResponse) Reset() {
-	*x = GetNotebookResponse{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_notebook_proto_msgTypes[4]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *GetNotebookResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetNotebookResponse) ProtoMessage() {}
-
-func (x *GetNotebookResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_notebook_proto_msgTypes[4]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetNotebookResponse.ProtoReflect.Descriptor instead.
-func (*GetNotebookResponse) Descriptor() ([]byte, []int) {
-	return file_notebook_proto_rawDescGZIP(), []int{4}
-}
-
-func (x *GetNotebookResponse) GetMessage() string {
+func (x *CreateNoteRequest) GetTags() []string {
 	if x != nil {
-		return x.Message
-	}
-	return ""
-}
-
-func (x *GetNotebookResponse) GetNotes() []*Note {
-	if x != nil {
-		return x.Notes
+		return x.Tags
 	}
 	return nil
 }
 
-// Note Request/Response objects
+// CreateNoteResponse returns the note id and creation timestamp upon successful insertion
+// into the DB
+type CreateNoteResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Id      string               `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Created *timestamp.Timestamp `protobuf:"bytes,2,opt,name=created,proto3" json:"created,omitempty"`
+}
+
+func (x *CreateNoteResponse) Reset() {
+	*x = CreateNoteResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_notebook_proto_msgTypes[6]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *CreateNoteResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CreateNoteResponse) ProtoMessage() {}
+
+func (x *CreateNoteResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_notebook_proto_msgTypes[6]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CreateNoteResponse.ProtoReflect.Descriptor instead.
+func (*CreateNoteResponse) Descriptor() ([]byte, []int) {
+	return file_notebook_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *CreateNoteResponse) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *CreateNoteResponse) GetCreated() *timestamp.Timestamp {
+	if x != nil {
+		return x.Created
+	}
+	return nil
+}
+
 // GetNoteRequest retuns the Note object
 type GetNoteRequest struct {
 	state         protoimpl.MessageState
@@ -329,7 +457,7 @@ type GetNoteRequest struct {
 func (x *GetNoteRequest) Reset() {
 	*x = GetNoteRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_notebook_proto_msgTypes[5]
+		mi := &file_notebook_proto_msgTypes[7]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -342,7 +470,7 @@ func (x *GetNoteRequest) String() string {
 func (*GetNoteRequest) ProtoMessage() {}
 
 func (x *GetNoteRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_notebook_proto_msgTypes[5]
+	mi := &file_notebook_proto_msgTypes[7]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -355,7 +483,7 @@ func (x *GetNoteRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetNoteRequest.ProtoReflect.Descriptor instead.
 func (*GetNoteRequest) Descriptor() ([]byte, []int) {
-	return file_notebook_proto_rawDescGZIP(), []int{5}
+	return file_notebook_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *GetNoteRequest) GetNotebookName() string {
@@ -383,7 +511,7 @@ type GetNoteResponse struct {
 func (x *GetNoteResponse) Reset() {
 	*x = GetNoteResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_notebook_proto_msgTypes[6]
+		mi := &file_notebook_proto_msgTypes[8]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -396,7 +524,7 @@ func (x *GetNoteResponse) String() string {
 func (*GetNoteResponse) ProtoMessage() {}
 
 func (x *GetNoteResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_notebook_proto_msgTypes[6]
+	mi := &file_notebook_proto_msgTypes[8]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -409,10 +537,139 @@ func (x *GetNoteResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetNoteResponse.ProtoReflect.Descriptor instead.
 func (*GetNoteResponse) Descriptor() ([]byte, []int) {
-	return file_notebook_proto_rawDescGZIP(), []int{6}
+	return file_notebook_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *GetNoteResponse) GetNote() *Note {
+	if x != nil {
+		return x.Note
+	}
+	return nil
+}
+
+// UpateNoteRequest attempts to update a note object
+type UpdateNoteRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	NotebookName string   `protobuf:"bytes,1,opt,name=notebook_name,json=notebookName,proto3" json:"notebook_name,omitempty"`
+	Id           string   `protobuf:"bytes,2,opt,name=id,proto3" json:"id,omitempty"`
+	Title        string   `protobuf:"bytes,3,opt,name=title,proto3" json:"title,omitempty"`
+	Body         string   `protobuf:"bytes,4,opt,name=body,proto3" json:"body,omitempty"`
+	Tags         []string `protobuf:"bytes,5,rep,name=tags,proto3" json:"tags,omitempty"`
+}
+
+func (x *UpdateNoteRequest) Reset() {
+	*x = UpdateNoteRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_notebook_proto_msgTypes[9]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *UpdateNoteRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateNoteRequest) ProtoMessage() {}
+
+func (x *UpdateNoteRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_notebook_proto_msgTypes[9]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateNoteRequest.ProtoReflect.Descriptor instead.
+func (*UpdateNoteRequest) Descriptor() ([]byte, []int) {
+	return file_notebook_proto_rawDescGZIP(), []int{9}
+}
+
+func (x *UpdateNoteRequest) GetNotebookName() string {
+	if x != nil {
+		return x.NotebookName
+	}
+	return ""
+}
+
+func (x *UpdateNoteRequest) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *UpdateNoteRequest) GetTitle() string {
+	if x != nil {
+		return x.Title
+	}
+	return ""
+}
+
+func (x *UpdateNoteRequest) GetBody() string {
+	if x != nil {
+		return x.Body
+	}
+	return ""
+}
+
+func (x *UpdateNoteRequest) GetTags() []string {
+	if x != nil {
+		return x.Tags
+	}
+	return nil
+}
+
+// UpateNoteResponse returns a full note object upon a successful
+// update
+type UpdateNoteResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Note *Note `protobuf:"bytes,1,opt,name=note,proto3" json:"note,omitempty"`
+}
+
+func (x *UpdateNoteResponse) Reset() {
+	*x = UpdateNoteResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_notebook_proto_msgTypes[10]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *UpdateNoteResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateNoteResponse) ProtoMessage() {}
+
+func (x *UpdateNoteResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_notebook_proto_msgTypes[10]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateNoteResponse.ProtoReflect.Descriptor instead.
+func (*UpdateNoteResponse) Descriptor() ([]byte, []int) {
+	return file_notebook_proto_rawDescGZIP(), []int{10}
+}
+
+func (x *UpdateNoteResponse) GetNote() *Note {
 	if x != nil {
 		return x.Note
 	}
@@ -432,7 +689,7 @@ type DeleteNoteRequest struct {
 func (x *DeleteNoteRequest) Reset() {
 	*x = DeleteNoteRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_notebook_proto_msgTypes[7]
+		mi := &file_notebook_proto_msgTypes[11]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -445,7 +702,7 @@ func (x *DeleteNoteRequest) String() string {
 func (*DeleteNoteRequest) ProtoMessage() {}
 
 func (x *DeleteNoteRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_notebook_proto_msgTypes[7]
+	mi := &file_notebook_proto_msgTypes[11]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -458,7 +715,7 @@ func (x *DeleteNoteRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteNoteRequest.ProtoReflect.Descriptor instead.
 func (*DeleteNoteRequest) Descriptor() ([]byte, []int) {
-	return file_notebook_proto_rawDescGZIP(), []int{7}
+	return file_notebook_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *DeleteNoteRequest) GetNotebookName() string {
@@ -487,7 +744,7 @@ type DeleteNoteResposne struct {
 func (x *DeleteNoteResposne) Reset() {
 	*x = DeleteNoteResposne{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_notebook_proto_msgTypes[8]
+		mi := &file_notebook_proto_msgTypes[12]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -500,7 +757,7 @@ func (x *DeleteNoteResposne) String() string {
 func (*DeleteNoteResposne) ProtoMessage() {}
 
 func (x *DeleteNoteResposne) ProtoReflect() protoreflect.Message {
-	mi := &file_notebook_proto_msgTypes[8]
+	mi := &file_notebook_proto_msgTypes[12]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -513,7 +770,7 @@ func (x *DeleteNoteResposne) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteNoteResposne.ProtoReflect.Descriptor instead.
 func (*DeleteNoteResposne) Descriptor() ([]byte, []int) {
-	return file_notebook_proto_rawDescGZIP(), []int{8}
+	return file_notebook_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *DeleteNoteResposne) GetNote() *Note {
@@ -529,50 +786,75 @@ var file_notebook_proto_rawDesc = []byte{
 	0x0a, 0x0e, 0x6e, 0x6f, 0x74, 0x65, 0x62, 0x6f, 0x6f, 0x6b, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f,
 	0x12, 0x04, 0x6d, 0x61, 0x69, 0x6e, 0x1a, 0x1f, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2f, 0x70,
 	0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2f, 0x74, 0x69, 0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d,
-	0x70, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0xcb, 0x01, 0x0a, 0x04, 0x4e, 0x6f, 0x74, 0x65,
-	0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x02, 0x69, 0x64,
-	0x12, 0x14, 0x0a, 0x05, 0x74, 0x69, 0x74, 0x6c, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52,
-	0x05, 0x74, 0x69, 0x74, 0x6c, 0x65, 0x12, 0x12, 0x0a, 0x04, 0x62, 0x6f, 0x64, 0x79, 0x18, 0x03,
-	0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x62, 0x6f, 0x64, 0x79, 0x12, 0x12, 0x0a, 0x04, 0x74, 0x61,
-	0x67, 0x73, 0x18, 0x04, 0x20, 0x03, 0x28, 0x09, 0x52, 0x04, 0x74, 0x61, 0x67, 0x73, 0x12, 0x34,
-	0x0a, 0x07, 0x63, 0x72, 0x65, 0x61, 0x74, 0x65, 0x64, 0x18, 0x05, 0x20, 0x01, 0x28, 0x0b, 0x32,
-	0x1a, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75,
-	0x66, 0x2e, 0x54, 0x69, 0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d, 0x70, 0x52, 0x07, 0x63, 0x72, 0x65,
-	0x61, 0x74, 0x65, 0x64, 0x12, 0x3f, 0x0a, 0x0d, 0x6c, 0x61, 0x73, 0x74, 0x5f, 0x6d, 0x6f, 0x64,
-	0x69, 0x66, 0x69, 0x65, 0x64, 0x18, 0x06, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1a, 0x2e, 0x67, 0x6f,
-	0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x54, 0x69,
-	0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d, 0x70, 0x52, 0x0c, 0x6c, 0x61, 0x73, 0x74, 0x4d, 0x6f, 0x64,
-	0x69, 0x66, 0x69, 0x65, 0x64, 0x22, 0x2b, 0x0a, 0x15, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x4e,
-	0x6f, 0x74, 0x65, 0x62, 0x6f, 0x6f, 0x6b, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x12,
+	0x70, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0x2b, 0x0a, 0x15, 0x43, 0x72, 0x65, 0x61, 0x74,
+	0x65, 0x4e, 0x6f, 0x74, 0x65, 0x62, 0x6f, 0x6f, 0x6b, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
+	0x12, 0x12, 0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04,
+	0x6e, 0x61, 0x6d, 0x65, 0x22, 0x2c, 0x0a, 0x16, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x4e, 0x6f,
+	0x74, 0x65, 0x62, 0x6f, 0x6f, 0x6b, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x12,
 	0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x6e, 0x61,
-	0x6d, 0x65, 0x22, 0x2c, 0x0a, 0x16, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x4e, 0x6f, 0x74, 0x65,
-	0x62, 0x6f, 0x6f, 0x6b, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x12, 0x0a, 0x04,
-	0x6e, 0x61, 0x6d, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65,
-	0x22, 0x28, 0x0a, 0x12, 0x47, 0x65, 0x74, 0x4e, 0x6f, 0x74, 0x65, 0x62, 0x6f, 0x6f, 0x6b, 0x52,
-	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x12, 0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x01,
-	0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x22, 0x51, 0x0a, 0x13, 0x47, 0x65,
-	0x74, 0x4e, 0x6f, 0x74, 0x65, 0x62, 0x6f, 0x6f, 0x6b, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
-	0x65, 0x12, 0x18, 0x0a, 0x07, 0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x18, 0x01, 0x20, 0x01,
-	0x28, 0x09, 0x52, 0x07, 0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x12, 0x20, 0x0a, 0x05, 0x6e,
-	0x6f, 0x74, 0x65, 0x73, 0x18, 0x02, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x0a, 0x2e, 0x6d, 0x61, 0x69,
-	0x6e, 0x2e, 0x4e, 0x6f, 0x74, 0x65, 0x52, 0x05, 0x6e, 0x6f, 0x74, 0x65, 0x73, 0x22, 0x45, 0x0a,
-	0x0e, 0x47, 0x65, 0x74, 0x4e, 0x6f, 0x74, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12,
+	0x6d, 0x65, 0x22, 0x28, 0x0a, 0x12, 0x47, 0x65, 0x74, 0x4e, 0x6f, 0x74, 0x65, 0x62, 0x6f, 0x6f,
+	0x6b, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x12, 0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65,
+	0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x22, 0x51, 0x0a, 0x13,
+	0x47, 0x65, 0x74, 0x4e, 0x6f, 0x74, 0x65, 0x62, 0x6f, 0x6f, 0x6b, 0x52, 0x65, 0x73, 0x70, 0x6f,
+	0x6e, 0x73, 0x65, 0x12, 0x18, 0x0a, 0x07, 0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x18, 0x01,
+	0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x12, 0x20, 0x0a,
+	0x05, 0x6e, 0x6f, 0x74, 0x65, 0x73, 0x18, 0x02, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x0a, 0x2e, 0x6d,
+	0x61, 0x69, 0x6e, 0x2e, 0x4e, 0x6f, 0x74, 0x65, 0x52, 0x05, 0x6e, 0x6f, 0x74, 0x65, 0x73, 0x22,
+	0xcb, 0x01, 0x0a, 0x04, 0x4e, 0x6f, 0x74, 0x65, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01,
+	0x20, 0x01, 0x28, 0x09, 0x52, 0x02, 0x69, 0x64, 0x12, 0x14, 0x0a, 0x05, 0x74, 0x69, 0x74, 0x6c,
+	0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x74, 0x69, 0x74, 0x6c, 0x65, 0x12, 0x12,
+	0x0a, 0x04, 0x62, 0x6f, 0x64, 0x79, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x62, 0x6f,
+	0x64, 0x79, 0x12, 0x12, 0x0a, 0x04, 0x74, 0x61, 0x67, 0x73, 0x18, 0x04, 0x20, 0x03, 0x28, 0x09,
+	0x52, 0x04, 0x74, 0x61, 0x67, 0x73, 0x12, 0x34, 0x0a, 0x07, 0x63, 0x72, 0x65, 0x61, 0x74, 0x65,
+	0x64, 0x18, 0x05, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1a, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65,
+	0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x54, 0x69, 0x6d, 0x65, 0x73, 0x74,
+	0x61, 0x6d, 0x70, 0x52, 0x07, 0x63, 0x72, 0x65, 0x61, 0x74, 0x65, 0x64, 0x12, 0x3f, 0x0a, 0x0d,
+	0x6c, 0x61, 0x73, 0x74, 0x5f, 0x6d, 0x6f, 0x64, 0x69, 0x66, 0x69, 0x65, 0x64, 0x18, 0x06, 0x20,
+	0x01, 0x28, 0x0b, 0x32, 0x1a, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f,
+	0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x54, 0x69, 0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d, 0x70, 0x52,
+	0x0c, 0x6c, 0x61, 0x73, 0x74, 0x4d, 0x6f, 0x64, 0x69, 0x66, 0x69, 0x65, 0x64, 0x22, 0x76, 0x0a,
+	0x11, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x4e, 0x6f, 0x74, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65,
+	0x73, 0x74, 0x12, 0x23, 0x0a, 0x0d, 0x6e, 0x6f, 0x74, 0x65, 0x62, 0x6f, 0x6f, 0x6b, 0x5f, 0x6e,
+	0x61, 0x6d, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0c, 0x6e, 0x6f, 0x74, 0x65, 0x62,
+	0x6f, 0x6f, 0x6b, 0x4e, 0x61, 0x6d, 0x65, 0x12, 0x14, 0x0a, 0x05, 0x74, 0x69, 0x74, 0x6c, 0x65,
+	0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x74, 0x69, 0x74, 0x6c, 0x65, 0x12, 0x12, 0x0a,
+	0x04, 0x62, 0x6f, 0x64, 0x79, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x62, 0x6f, 0x64,
+	0x79, 0x12, 0x12, 0x0a, 0x04, 0x74, 0x61, 0x67, 0x73, 0x18, 0x04, 0x20, 0x03, 0x28, 0x09, 0x52,
+	0x04, 0x74, 0x61, 0x67, 0x73, 0x22, 0x5a, 0x0a, 0x12, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x4e,
+	0x6f, 0x74, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x0e, 0x0a, 0x02, 0x69,
+	0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x02, 0x69, 0x64, 0x12, 0x34, 0x0a, 0x07, 0x63,
+	0x72, 0x65, 0x61, 0x74, 0x65, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1a, 0x2e, 0x67,
+	0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x54,
+	0x69, 0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d, 0x70, 0x52, 0x07, 0x63, 0x72, 0x65, 0x61, 0x74, 0x65,
+	0x64, 0x22, 0x45, 0x0a, 0x0e, 0x47, 0x65, 0x74, 0x4e, 0x6f, 0x74, 0x65, 0x52, 0x65, 0x71, 0x75,
+	0x65, 0x73, 0x74, 0x12, 0x23, 0x0a, 0x0d, 0x6e, 0x6f, 0x74, 0x65, 0x62, 0x6f, 0x6f, 0x6b, 0x5f,
+	0x6e, 0x61, 0x6d, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0c, 0x6e, 0x6f, 0x74, 0x65,
+	0x62, 0x6f, 0x6f, 0x6b, 0x4e, 0x61, 0x6d, 0x65, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x02,
+	0x20, 0x01, 0x28, 0x09, 0x52, 0x02, 0x69, 0x64, 0x22, 0x31, 0x0a, 0x0f, 0x47, 0x65, 0x74, 0x4e,
+	0x6f, 0x74, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x1e, 0x0a, 0x04, 0x6e,
+	0x6f, 0x74, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x0a, 0x2e, 0x6d, 0x61, 0x69, 0x6e,
+	0x2e, 0x4e, 0x6f, 0x74, 0x65, 0x52, 0x04, 0x6e, 0x6f, 0x74, 0x65, 0x22, 0x86, 0x01, 0x0a, 0x11,
+	0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x4e, 0x6f, 0x74, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
+	0x74, 0x12, 0x23, 0x0a, 0x0d, 0x6e, 0x6f, 0x74, 0x65, 0x62, 0x6f, 0x6f, 0x6b, 0x5f, 0x6e, 0x61,
+	0x6d, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0c, 0x6e, 0x6f, 0x74, 0x65, 0x62, 0x6f,
+	0x6f, 0x6b, 0x4e, 0x61, 0x6d, 0x65, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x02, 0x20, 0x01,
+	0x28, 0x09, 0x52, 0x02, 0x69, 0x64, 0x12, 0x14, 0x0a, 0x05, 0x74, 0x69, 0x74, 0x6c, 0x65, 0x18,
+	0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x74, 0x69, 0x74, 0x6c, 0x65, 0x12, 0x12, 0x0a, 0x04,
+	0x62, 0x6f, 0x64, 0x79, 0x18, 0x04, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x62, 0x6f, 0x64, 0x79,
+	0x12, 0x12, 0x0a, 0x04, 0x74, 0x61, 0x67, 0x73, 0x18, 0x05, 0x20, 0x03, 0x28, 0x09, 0x52, 0x04,
+	0x74, 0x61, 0x67, 0x73, 0x22, 0x34, 0x0a, 0x12, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x4e, 0x6f,
+	0x74, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x1e, 0x0a, 0x04, 0x6e, 0x6f,
+	0x74, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x0a, 0x2e, 0x6d, 0x61, 0x69, 0x6e, 0x2e,
+	0x4e, 0x6f, 0x74, 0x65, 0x52, 0x04, 0x6e, 0x6f, 0x74, 0x65, 0x22, 0x48, 0x0a, 0x11, 0x44, 0x65,
+	0x6c, 0x65, 0x74, 0x65, 0x4e, 0x6f, 0x74, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12,
 	0x23, 0x0a, 0x0d, 0x6e, 0x6f, 0x74, 0x65, 0x62, 0x6f, 0x6f, 0x6b, 0x5f, 0x6e, 0x61, 0x6d, 0x65,
 	0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0c, 0x6e, 0x6f, 0x74, 0x65, 0x62, 0x6f, 0x6f, 0x6b,
 	0x4e, 0x61, 0x6d, 0x65, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09,
-	0x52, 0x02, 0x69, 0x64, 0x22, 0x31, 0x0a, 0x0f, 0x47, 0x65, 0x74, 0x4e, 0x6f, 0x74, 0x65, 0x52,
-	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x1e, 0x0a, 0x04, 0x6e, 0x6f, 0x74, 0x65, 0x18,
-	0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x0a, 0x2e, 0x6d, 0x61, 0x69, 0x6e, 0x2e, 0x4e, 0x6f, 0x74,
-	0x65, 0x52, 0x04, 0x6e, 0x6f, 0x74, 0x65, 0x22, 0x48, 0x0a, 0x11, 0x44, 0x65, 0x6c, 0x65, 0x74,
-	0x65, 0x4e, 0x6f, 0x74, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x23, 0x0a, 0x0d,
-	0x6e, 0x6f, 0x74, 0x65, 0x62, 0x6f, 0x6f, 0x6b, 0x5f, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x01, 0x20,
-	0x01, 0x28, 0x09, 0x52, 0x0c, 0x6e, 0x6f, 0x74, 0x65, 0x62, 0x6f, 0x6f, 0x6b, 0x4e, 0x61, 0x6d,
-	0x65, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x02, 0x69,
-	0x64, 0x22, 0x34, 0x0a, 0x12, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x4e, 0x6f, 0x74, 0x65, 0x52,
-	0x65, 0x73, 0x70, 0x6f, 0x73, 0x6e, 0x65, 0x12, 0x1e, 0x0a, 0x04, 0x6e, 0x6f, 0x74, 0x65, 0x18,
-	0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x0a, 0x2e, 0x6d, 0x61, 0x69, 0x6e, 0x2e, 0x4e, 0x6f, 0x74,
-	0x65, 0x52, 0x04, 0x6e, 0x6f, 0x74, 0x65, 0x42, 0x0c, 0x5a, 0x0a, 0x2e, 0x3b, 0x6e, 0x6f, 0x74,
-	0x65, 0x62, 0x6f, 0x6f, 0x6b, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x52, 0x02, 0x69, 0x64, 0x22, 0x34, 0x0a, 0x12, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x4e, 0x6f,
+	0x74, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x73, 0x6e, 0x65, 0x12, 0x1e, 0x0a, 0x04, 0x6e, 0x6f,
+	0x74, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x0a, 0x2e, 0x6d, 0x61, 0x69, 0x6e, 0x2e,
+	0x4e, 0x6f, 0x74, 0x65, 0x52, 0x04, 0x6e, 0x6f, 0x74, 0x65, 0x42, 0x08, 0x5a, 0x06, 0x2e, 0x3b,
+	0x6d, 0x61, 0x69, 0x6e, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -587,30 +869,36 @@ func file_notebook_proto_rawDescGZIP() []byte {
 	return file_notebook_proto_rawDescData
 }
 
-var file_notebook_proto_msgTypes = make([]protoimpl.MessageInfo, 9)
+var file_notebook_proto_msgTypes = make([]protoimpl.MessageInfo, 13)
 var file_notebook_proto_goTypes = []interface{}{
-	(*Note)(nil),                   // 0: main.Note
-	(*CreateNotebookRequest)(nil),  // 1: main.CreateNotebookRequest
-	(*CreateNotebookResponse)(nil), // 2: main.CreateNotebookResponse
-	(*GetNotebookRequest)(nil),     // 3: main.GetNotebookRequest
-	(*GetNotebookResponse)(nil),    // 4: main.GetNotebookResponse
-	(*GetNoteRequest)(nil),         // 5: main.GetNoteRequest
-	(*GetNoteResponse)(nil),        // 6: main.GetNoteResponse
-	(*DeleteNoteRequest)(nil),      // 7: main.DeleteNoteRequest
-	(*DeleteNoteResposne)(nil),     // 8: main.DeleteNoteResposne
-	(*timestamp.Timestamp)(nil),    // 9: google.protobuf.Timestamp
+	(*CreateNotebookRequest)(nil),  // 0: main.CreateNotebookRequest
+	(*CreateNotebookResponse)(nil), // 1: main.CreateNotebookResponse
+	(*GetNotebookRequest)(nil),     // 2: main.GetNotebookRequest
+	(*GetNotebookResponse)(nil),    // 3: main.GetNotebookResponse
+	(*Note)(nil),                   // 4: main.Note
+	(*CreateNoteRequest)(nil),      // 5: main.CreateNoteRequest
+	(*CreateNoteResponse)(nil),     // 6: main.CreateNoteResponse
+	(*GetNoteRequest)(nil),         // 7: main.GetNoteRequest
+	(*GetNoteResponse)(nil),        // 8: main.GetNoteResponse
+	(*UpdateNoteRequest)(nil),      // 9: main.UpdateNoteRequest
+	(*UpdateNoteResponse)(nil),     // 10: main.UpdateNoteResponse
+	(*DeleteNoteRequest)(nil),      // 11: main.DeleteNoteRequest
+	(*DeleteNoteResposne)(nil),     // 12: main.DeleteNoteResposne
+	(*timestamp.Timestamp)(nil),    // 13: google.protobuf.Timestamp
 }
 var file_notebook_proto_depIdxs = []int32{
-	9, // 0: main.Note.created:type_name -> google.protobuf.Timestamp
-	9, // 1: main.Note.last_modified:type_name -> google.protobuf.Timestamp
-	0, // 2: main.GetNotebookResponse.notes:type_name -> main.Note
-	0, // 3: main.GetNoteResponse.note:type_name -> main.Note
-	0, // 4: main.DeleteNoteResposne.note:type_name -> main.Note
-	5, // [5:5] is the sub-list for method output_type
-	5, // [5:5] is the sub-list for method input_type
-	5, // [5:5] is the sub-list for extension type_name
-	5, // [5:5] is the sub-list for extension extendee
-	0, // [0:5] is the sub-list for field type_name
+	4,  // 0: main.GetNotebookResponse.notes:type_name -> main.Note
+	13, // 1: main.Note.created:type_name -> google.protobuf.Timestamp
+	13, // 2: main.Note.last_modified:type_name -> google.protobuf.Timestamp
+	13, // 3: main.CreateNoteResponse.created:type_name -> google.protobuf.Timestamp
+	4,  // 4: main.GetNoteResponse.note:type_name -> main.Note
+	4,  // 5: main.UpdateNoteResponse.note:type_name -> main.Note
+	4,  // 6: main.DeleteNoteResposne.note:type_name -> main.Note
+	7,  // [7:7] is the sub-list for method output_type
+	7,  // [7:7] is the sub-list for method input_type
+	7,  // [7:7] is the sub-list for extension type_name
+	7,  // [7:7] is the sub-list for extension extendee
+	0,  // [0:7] is the sub-list for field type_name
 }
 
 func init() { file_notebook_proto_init() }
@@ -620,18 +908,6 @@ func file_notebook_proto_init() {
 	}
 	if !protoimpl.UnsafeEnabled {
 		file_notebook_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*Note); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_notebook_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*CreateNotebookRequest); i {
 			case 0:
 				return &v.state
@@ -643,7 +919,7 @@ func file_notebook_proto_init() {
 				return nil
 			}
 		}
-		file_notebook_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
+		file_notebook_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*CreateNotebookResponse); i {
 			case 0:
 				return &v.state
@@ -655,7 +931,7 @@ func file_notebook_proto_init() {
 				return nil
 			}
 		}
-		file_notebook_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
+		file_notebook_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*GetNotebookRequest); i {
 			case 0:
 				return &v.state
@@ -667,7 +943,7 @@ func file_notebook_proto_init() {
 				return nil
 			}
 		}
-		file_notebook_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
+		file_notebook_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*GetNotebookResponse); i {
 			case 0:
 				return &v.state
@@ -679,8 +955,20 @@ func file_notebook_proto_init() {
 				return nil
 			}
 		}
+		file_notebook_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*Note); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
 		file_notebook_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetNoteRequest); i {
+			switch v := v.(*CreateNoteRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -692,7 +980,7 @@ func file_notebook_proto_init() {
 			}
 		}
 		file_notebook_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetNoteResponse); i {
+			switch v := v.(*CreateNoteResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -704,7 +992,7 @@ func file_notebook_proto_init() {
 			}
 		}
 		file_notebook_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*DeleteNoteRequest); i {
+			switch v := v.(*GetNoteRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -716,6 +1004,54 @@ func file_notebook_proto_init() {
 			}
 		}
 		file_notebook_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GetNoteResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_notebook_proto_msgTypes[9].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*UpdateNoteRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_notebook_proto_msgTypes[10].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*UpdateNoteResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_notebook_proto_msgTypes[11].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*DeleteNoteRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_notebook_proto_msgTypes[12].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*DeleteNoteResposne); i {
 			case 0:
 				return &v.state
@@ -734,7 +1070,7 @@ func file_notebook_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_notebook_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   9,
+			NumMessages:   13,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
