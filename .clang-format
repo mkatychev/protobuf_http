@@ -1,0 +1,14 @@
+# Language: Proto
+AlignAfterOpenBracket: Align
+AlignAfterOpenBracket: true
+AlignConsecutiveAssignments: true
+AlignConsecutiveDeclarations: true
+AlignTrailingComments: true
+AllowShortBlocksOnASingleLine: false
+AllowShortFunctionsOnASingleLine: false
+CompactNamespaces: true
+PenaltyBreakComment: 100
+ReflowComments: true
+SpacesBeforeTrailingComments: 1
+ColumnLimit: 120
+CommentPragmas: '^go:generate'
