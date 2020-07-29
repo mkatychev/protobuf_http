@@ -1,54 +1,49 @@
 syntax = "proto3";
 
-package echo;
+package main;
 
 import "google/protobuf/timestamp.proto";
 
-option go_package="notebook";
+option go_package = ".;notebook";
 
-// Note 
+// Note
 message Note {
-    string id                             = 1;
-    string title                          = 2;
-    string body                           = 3;
-    repeated string tags                  = 4;
+  string                    id            = 1;
+  string                    title         = 2;
+  string                    body          = 3;
+  repeated string           tags          = 4;
   google.protobuf.Timestamp created       = 5;
   google.protobuf.Timestamp last_modified = 6;
 }
 
-// NoteMetadata holds all the same attributes as Note with the exclusion of body
-message NoteMetadata {
-    string id                             = 1;
-    string title                          = 2;
-    repeated string tags                  = 3;
-  google.protobuf.Timestamp created       = 4;
-  google.protobuf.Timestamp last_modified = 5;
+// NotebookRequest Request/Response objects
+
+// CreateNotebookRequest creates a notebook object internally
+message CreateNotebookRequest {
+  string name = 1;
 }
 
-// CreateNotebookRequest Request/Response objects
-message CreateNotebookRequest {
-    string name = 1;
-}
-
-// Notebook Request/Response objects
-message CreateNotebookRequest {
-    string name = 1;
+// CreateNotebookResponse creates a notebook object internally
+message CreateNotebookResponse {
+  string name = 1;
 }
 // GetNotebookRequest takes a notebook name as a parameter
 message GetNotebookRequest {
-    string name = 1;
+  string name = 1;
 }
 
+// GetNotebookResponse returns the notebook title was well as repteated Note objects
+// with an empty body key
 message GetNotebookResponse {
-    string message = 1;
-    repeated NoteMetadata notes = 2;
+  string                message = 1;
+  repeated Note notes   = 2;
 }
 
 // Note Request/Response objects
-// GetNoteRequest retuns the Note object  
+// GetNoteRequest retuns the Note object
 message GetNoteRequest {
   string notebook_name = 1;
-  string id = 1;
+  string id            = 2;
 }
 
 message GetNoteResponse {
@@ -58,7 +53,7 @@ message GetNoteResponse {
 // DeleteNoteRequest attempts to delete the delevant note
 message DeleteNoteRequest {
   string notebook_name = 1;
-  string id = 1;
+  string id            = 2;
 }
 
 // DeleteNoteResponse returns a note object if a deletion was successful
