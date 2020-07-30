@@ -1,12 +1,29 @@
 Example HTTP Notebook server
 
+## Notebook
+A `Notebook` is an object containing several `Notes`:
+
+```proto
+message Note {
+  string                    id            = 1;
+  string                    title         = 2;
+  string                    body          = 3;
+  repeated string           tags          = 4;
+  google.protobuf.Timestamp created       = 5;
+  google.protobuf.Timestamp last_modified = 6;
+}
+```
+
+* Notebooks can be retrieved along with the metadata of the notes within, if a `tags` is provided, only the relevant notes will be returned
+* Notes can be created, updated, deleted, and retrieved
+
 ## Setup
 
-* `brew install clang-format protoc-gen-go protobuf` to setup on macOS for developmen
+* `brew install clang-format protoc-gen-go protobuf` to setup on macOS for development
 * `./proto-format.sh` will autoformat the proto
 * to generate/regenerate `*.pb.go` files: `protoc notebook.proto --go_out=.`
 
-## Runnig
+## Running
 - `go run .` will run the service on `localhost:8080`
 - `NTBK_PORT="9001" go run .` will run the service on `localhost:9001`
 
