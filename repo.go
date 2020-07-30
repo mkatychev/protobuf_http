@@ -370,7 +370,7 @@ func (t tags) tagHoldsNoteID(tagName, noteID string) bool {
 	return false
 }
 
-// tag operation is used by tagsToAddAndRemove to determine what tag
+// tagOperation is used by tagsToAddAndRemove to determine what tag
 // references to insert or pop
 type tagOperation struct {
 	hasOld bool
