@@ -64,3 +64,5 @@ curl -X UPDATE -d  "$UPDATE_BODY" localhost:$NTBK_PORT/note
 # r.HandleFunc("/notebook", repo.GetNotebook).Methods("GET")
 curl -X GET -d "{\"name\": \"$NOTE_NAME\"}" localhost:$NTBK_PORT/notebook
 ```
+
+* **NOTE**: `curl.sh` port and notebook name can be overridden: `NTBK_PORT="9001"  NOTE_NAME="Not_Test_Note" go run .`
