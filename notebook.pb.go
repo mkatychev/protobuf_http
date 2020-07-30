@@ -452,7 +452,7 @@ func (x *CreateNoteResponse) GetCreated() *timestamp.Timestamp {
 	return nil
 }
 
-// GetNoteRequest retuns the Note object
+// GetNoteRequest returns the Note object
 type GetNoteRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -555,7 +555,7 @@ func (x *GetNoteResponse) GetNote() *Note {
 	return nil
 }
 
-// UpateNoteRequest attempts to update a note object
+// UpdateNoteRequest attempts to update a note object
 type UpdateNoteRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -635,7 +635,7 @@ func (x *UpdateNoteRequest) GetTags() []string {
 	return nil
 }
 
-// UpateNoteResponse returns a full note object upon a successful
+// UpdateNoteResponse returns a full note object upon a successful
 // update
 type UpdateNoteResponse struct {
 	state         protoimpl.MessageState
@@ -684,7 +684,7 @@ func (x *UpdateNoteResponse) GetNote() *Note {
 	return nil
 }
 
-// DeleteNoteRequest attempts to delete the delevant note
+// DeleteNoteRequest attempts to delete the relevant note
 type DeleteNoteRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache

@@ -329,9 +329,7 @@ func (n *NotebookRepo) DeleteNote(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// compiles a list of tag names to determine which
-	// ones should be added and removed by returning
-	// pass an empty slice for new tags
+	// Delete note will only remove tag references
 	_, remove := tagsToAddAndRemove(note.Tags, []string{""})
 
 	for _, tagName := range remove {

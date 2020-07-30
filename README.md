@@ -20,7 +20,7 @@ message Note {
 ## Setup
 
 * `brew install clang-format protoc-gen-go protobuf` to setup on macOS for development
-* `./proto-format.sh` will autoformat the proto
+* `./proto-format.sh` will autoformat the proto upon modification
 * to generate/regenerate `*.pb.go` files: `protoc notebook.proto --go_out=.`
 
 ## Running
