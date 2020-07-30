@@ -3,12 +3,7 @@ package main
 import (
 	"bytes"
 	"encoding/json"
-
-	// "fmt"
-
 	"io/ioutil"
-	// "log"
-	// "net/http"
 	"net/http/httptest"
 	"testing"
 
