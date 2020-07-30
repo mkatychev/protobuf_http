@@ -21,14 +21,15 @@ message CreateNotebookResponse {
 }
 // GetNotebookRequest takes a notebook name as a parameter
 message GetNotebookRequest {
-  string name = 1;
+  string          name = 1;
+  repeated string tags = 2;
 }
 
 // GetNotebookResponse returns the notebook title was well as repeated Note objects
 // with an empty body key
 message GetNotebookResponse {
-  string        message = 1;
-  repeated Note notes   = 2;
+  string        name  = 1;
+  repeated Note notes = 2;
 }
 
 // -----------------------------
@@ -70,7 +71,7 @@ message GetNoteResponse {
   Note note = 1;
 }
 
-// UpateNoteRequest attempts to update a note object
+// UpdateNoteRequest attempts to update a note object
 message UpdateNoteRequest {
   string          notebook_name = 1;
   string          id            = 2;
@@ -79,19 +80,19 @@ message UpdateNoteRequest {
   repeated string tags          = 5;
 }
 
-// UpateNoteResponse returns a full note object upon a successful
+// UpdateNoteResponse returns a full note object upon a successful
 // update
 message UpdateNoteResponse {
   Note note = 1;
 }
 
-// DeleteNoteRequest attempts to delete the delevant note
+// DeleteNoteRequest attempts to delete the relevant note
 message DeleteNoteRequest {
   string notebook_name = 1;
   string id            = 2;
 }
 
 // DeleteNoteResponse returns a note object if a deletion was successful
-message DeleteNoteResposne {
+message DeleteNoteResponse {
   Note note = 1;
 }

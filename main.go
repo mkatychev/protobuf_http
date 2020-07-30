@@ -4,6 +4,7 @@ import (
 	"context"
 	"encoding/json"
 	"flag"
+	"fmt"
 	"log"
 	"net/http"
 	"os"
@@ -33,25 +34,32 @@ func CreateNotebook(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
+	port := os.Getenv("NTBK_PORT")
+	if port == "" {
+		// default port entry
+		port = "8080"
+	}
+	addr := fmt.Sprintf("0.0.0.0:%s", port)
 	var wait time.Duration
 	flag.DurationVar(&wait, "graceful-timeout", time.Second*15, "the duration for which the server gracefully wait for existing connections to finish - e.g. 15s or 1m")
 	flag.Parse()
-	log.Println("Starting notebook server")
+	log.Println(fmt.Sprintf("Starting notebook server on %s", addr))
 	r := mux.NewRouter()
 	repo := NewNotebookRepo()
-	r.HandleFunc("/notebook", repo.CreateNotebook).Methods("POST")
-	r.HandleFunc("/note", repo.CreateNote).Methods("POST")
-	// r.HandleFunc("/notebook", GetNotebook).Methods("GET")
-	r.HandleFunc("/note", repo.GetNote).Methods("GET")
-	// r.HandleFunc("/note", UpdateNote).Methods("UPDATE")
-	// r.HandleFunc("/note", DeleteNote).Methods("DELETE")
 
 	srv := &http.Server{
 		Handler:      r,
-		Addr:         "0.0.0.0:8080",
+		Addr:         addr,
 		WriteTimeout: 2 * time.Second,
 		ReadTimeout:  2 * time.Second,
 	}
+
+	r.HandleFunc("/note", repo.CreateNote).Methods("POST")
+	r.HandleFunc("/note", repo.GetNote).Methods("GET")
+	r.HandleFunc("/note", repo.UpdateNote).Methods("UPDATE")
+	r.HandleFunc("/notebook", repo.CreateNotebook).Methods("POST")
+	r.HandleFunc("/notebook", repo.GetNotebook).Methods("GET")
+	r.HandleFunc("/note", repo.DeleteNote).Methods("DELETE")
 
 	// Run our server in a goroutine so that it doesn't block.
 	go func() {
