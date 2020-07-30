@@ -1,23 +1,3 @@
-Example HTTP Notebook server
-
-## Setup
-
-* `brew install clang-format protoc-gen-go protobuf` to setup on macOS for developmen
-* `./proto-format.sh` will autoformat the proto
-* to generate/regenerate `*.pb.go` files: `protoc notebook.proto --go_out=.`
-
-## Runnig
-- `go run .` will run the service on `localhost:8080`
-- `NTBK_PORT="9001" go run .` will run the service on `localhost:9001`
-
-## Runnig using `docker`
-- To build: `docker build --tag notebook:1.0 .`
-- And run: `docker run -it --publish 8080:8080 notebook:1.0`
-
-## Example Commands
-* Use `curl.sh` to see example interactions:
-
-```sh
 #!/usr/bin/env bash
 
 
@@ -63,4 +43,3 @@ curl -X UPDATE -d  "$UPDATE_BODY" localhost:$NTBK_PORT/note
 
 # r.HandleFunc("/notebook", repo.GetNotebook).Methods("GET")
 curl -X GET -d "{\"name\": \"$NOTE_NAME\"}" localhost:$NTBK_PORT/notebook
-```
