@@ -2,7 +2,6 @@ package main
 
 import (
 	"context"
-	"encoding/json"
 	"flag"
 	"fmt"
 	"log"
@@ -11,38 +10,22 @@ import (
 	"os/signal"
 	"time"
 
-	"github.com/golang/protobuf/jsonpb"
-
 	"github.com/gorilla/mux"
 )
 
-func CreateNotebook(w http.ResponseWriter, r *http.Request) {
-	request := &CreateNotebookRequest{}
-	if err := jsonpb.Unmarshal(r.Body, request); err != nil {
-		log.Fatalf("Unable to unmarshal message from request : %v", err)
-		http.Error(w, err.Error(), http.StatusBadRequest)
-		return
-	}
-
-	result := &CreateNotebookResponse{Name: request.GetName()}
-	response, err := json.Marshal(result)
-	if err != nil {
-		log.Fatalf("Unable to marshal response : %v", err)
-	}
-	w.Write(response)
-
-}
-
 func main() {
+	var wait time.Duration
+	flag.DurationVar(&wait, "graceful-timeout", time.Second*15,
+		"the duration for which the server gracefully wait for existing connections to finish - e.g. 15s or 1m")
+	flag.Parse()
+
 	port := os.Getenv("NTBK_PORT")
 	if port == "" {
 		// default port entry
 		port = "8080"
 	}
 	addr := fmt.Sprintf("0.0.0.0:%s", port)
-	var wait time.Duration
-	flag.DurationVar(&wait, "graceful-timeout", time.Second*15, "the duration for which the server gracefully wait for existing connections to finish - e.g. 15s or 1m")
-	flag.Parse()
+
 	log.Println(fmt.Sprintf("Starting notebook server on %s", addr))
 	r := mux.NewRouter()
 	repo := NewNotebookRepo()
@@ -55,11 +38,11 @@ func main() {
 	}
 
 	r.HandleFunc("/note", repo.CreateNote).Methods("POST")
+	r.HandleFunc("/note", repo.DeleteNote).Methods("DELETE")
 	r.HandleFunc("/note", repo.GetNote).Methods("GET")
 	r.HandleFunc("/note", repo.UpdateNote).Methods("UPDATE")
 	r.HandleFunc("/notebook", repo.CreateNotebook).Methods("POST")
 	r.HandleFunc("/notebook", repo.GetNotebook).Methods("GET")
-	r.HandleFunc("/note", repo.DeleteNote).Methods("DELETE")
 
 	// Run our server in a goroutine so that it doesn't block.
 	go func() {

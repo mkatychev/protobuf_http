@@ -16,6 +16,20 @@ import (
 
 const requiredProperty = "%s cannot be empty"
 
+// assertRequiredProperty is a convenience function to check if a request body
+// has a non zero length required string field
+func assertRequiredProperty(w http.ResponseWriter, property interface{}, propertyName string) error {
+	// NOTE For now only handle string casts
+	if strProperty, ok := property.(string); ok {
+		if strProperty == "" {
+			errMsg := fmt.Sprintf(requiredProperty, propertyName)
+			http.Error(w, errMsg, http.StatusBadRequest)
+			return fmt.Errorf(errMsg)
+		}
+	}
+	return nil
+}
+
 // NotebookRepo is an in memory db holding all notebooks
 type NotebookRepo struct {
 	notebooks map[string]Notebook
@@ -30,6 +44,8 @@ func NewNotebookRepo() *NotebookRepo {
 
 type tags map[string][]string
 
+// Notebook represents the notebook object holding a collection of Notes
+// for the in memory NotebookRepo
 type Notebook struct {
 	notes map[string]*Note
 	// tags is a map with names as the key with values holding
@@ -64,7 +80,7 @@ func (n *NotebookRepo) CreateNotebook(w http.ResponseWriter, r *http.Request) {
 
 }
 
-// notesMeta is meant to be return in a GetNotebookResponse.Notes slice
+// notesMeta is meant to be returned in a GetNotebookResponse.Notes slice
 type notesMeta []*Note
 
 // hasID checks if a noteID string is present in a notesMeta object
@@ -100,7 +116,7 @@ func (n *NotebookRepo) GetNotebook(w http.ResponseWriter, r *http.Request) {
 	for _, note := range notebook.notes {
 		if len(body.Tags) != 0 {
 			for _, tag := range body.Tags {
-				if notebook.tags.tagHoldsNoteId(tag, note.GetId()) && !notes.hasID(note.Id) {
+				if notebook.tags.tagHoldsNoteID(tag, note.GetId()) && !notes.hasID(note.Id) {
 					notes = append(notes, &Note{
 						Id:      note.Id,
 						Title:   note.Title,
@@ -173,7 +189,7 @@ func (n *NotebookRepo) CreateNote(w http.ResponseWriter, r *http.Request) {
 
 	notebook.notes[id] = &note
 	for _, tag := range note.Tags {
-		if !notebook.tags.tagHoldsNoteId(tag, id) {
+		if !notebook.tags.tagHoldsNoteID(tag, id) {
 			notebook.tags[tag] = append(notebook.tags[tag], id)
 		}
 	}
@@ -258,6 +274,10 @@ func (n *NotebookRepo) UpdateNote(w http.ResponseWriter, r *http.Request) {
 	// of addition
 	for _, tagName := range remove {
 		notebook.tags[tagName] = removeNoteID(notebook.tags[tagName], body.Id)
+		// if no noteIDs are left in the tag slice
+		if len(notebook.tags[tagName]) == 0 {
+			delete(notebook.tags, tagName)
+		}
 	}
 
 	for _, tagName := range add {
@@ -341,7 +361,7 @@ func (n *NotebookRepo) DeleteNote(w http.ResponseWriter, r *http.Request) {
 
 // tagHoldsNoteId is used to determine whether a Notebook.tags entry
 // holds a noteID reference
-func (t tags) tagHoldsNoteId(tagName, noteID string) bool {
+func (t tags) tagHoldsNoteID(tagName, noteID string) bool {
 	noteIDs, ok := t[tagName]
 	if !ok {
 		return false
@@ -380,12 +400,12 @@ func tagsToAddAndRemove(oldTags, newTags []string) (add []string, remove []strin
 	}
 
 	for tagName, presence := range tagMap {
-		// if found in  new tags and missing from old Note
+		// if found in new tags and missing from old *Note object
 		if presence.hasNew && !presence.hasOld {
 			add = append(add, tagName)
 		}
 
-		// if missing from new tagging but present in the old one
+		// if missing from new tagging and present in old *Note object
 		if !presence.hasNew && presence.hasOld {
 			remove = append(remove, tagName)
 		}
@@ -419,22 +439,3 @@ func addNoteID(noteSlice []string, noteID string) []string {
 	}
 	return noteSlice
 }
-
-func assertRequiredProperty(w http.ResponseWriter, property interface{}, propertyName string) error {
-	// For now only handle string casts
-	if strProperty, ok := property.(string); ok {
-		if strProperty == "" {
-			errMsg := fmt.Sprintf(requiredProperty, propertyName)
-			http.Error(w, errMsg, http.StatusBadRequest)
-			return fmt.Errorf(errMsg)
-		}
-	}
-	return nil
-}
-
-// r.HandleFunc("/notebook", CreateNotebook).Methods("POST")
-// r.HandleFunc("/note", CreateNote).Methods("POST")
-// r.HandleFunc("/notebook", GetNotebook).Methods("GET")
-// r.HandleFunc("/note", GetNote).Methods("GET")
-// r.HandleFunc("/note", UpdateNote).Methods("UPDATE")
-// r.HandleFunc("/note", DeleteNote).Methods("DELETE")
