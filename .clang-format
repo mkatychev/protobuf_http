@@ -11,4 +11,3 @@ PenaltyBreakComment: 100
 ReflowComments: true
 SpacesBeforeTrailingComments: 1
 ColumnLimit: 120
-CommentPragmas: '^go:generate'
