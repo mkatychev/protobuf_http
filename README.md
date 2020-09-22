@@ -1,4 +1,4 @@
-Example HTTP Notebook server
+Example Protobuf implementation scoped to HTTP development
 
 ## Notebook
 A `Notebook` is an object containing several `Notes`:
